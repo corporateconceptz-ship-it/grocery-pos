@@ -79,7 +79,7 @@ export default function HistoryPage() {
           </div>
           <div className="bg-white rounded-xl shadow p-4 text-center">
             <div className="text-3xl font-bold text-purple-600">
-              {todaySales.length > 0 ? '$' + (todayTotal / todaySales.length).toFixed(2) : '$0.00'}
+              {todaySales.length > 0 ? '$' + (todayTotal / todaySales.length).toFixed(2) : '₹0.00'}
             </div>
             <div className="text-sm text-gray-500 mt-1">Avg. Transaction</div>
           </div>
