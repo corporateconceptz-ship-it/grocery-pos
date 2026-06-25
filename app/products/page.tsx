@@ -132,17 +132,17 @@ export default function ProductsPage() {
                   {CATEGORIES.map(c => <option key={c}>{c}</option>)}
                 </select>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Unit *</label>
-                <select required value={form.unit} onChange={e => setForm(f => ({ ...f, unit: e.target.value }))}
-                  className="w-full border rounded-lg px-3 py-2">
-                  {UNITS.map(u => <option key={u}>{u}</option>)}
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Price (Price (₹)) *</label>
+             <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Price (₹) *</label>
                 <input required type="number" min="0" step="0.01" value={form.price}
                   onChange={e => setForm(f => ({ ...f, price: parseFloat(e.target.value) || 0 }))}
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Cost Price (₹)</label>
+                <input type="number" min="0" step="0.01" value={form.cost_price}
+                  onChange={e => setForm(f => ({ ...f, cost_price: parseFloat(e.target.value) || 0 }))}
+                  placeholder="Purchase cost"
                   className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
               </div>
               <div>
