@@ -161,26 +161,26 @@ export default function POSTerminal({
           {receipt.items.map(i => (
             <div key={i.product.id} className="flex justify-between text-sm">
               <span>{i.product.name} × {i.quantity}</span>
-              <span>${i.line_total.toFixed(2)}</span>
+              <span>₹{i.line_total.toFixed(2)}</span>
             </div>
           ))}
         </div>
 
         <div className="space-y-1 text-sm mb-4">
-          <div className="flex justify-between"><span>Subtotal</span><span>${receipt.subtotal.toFixed(2)}</span></div>
+          <div className="flex justify-between"><span>Subtotal</span><span>₹{receipt.subtotal.toFixed(2)}</span></div>
           {receipt.discount > 0 && (
-            <div className="flex justify-between text-red-600"><span>Discount</span><span>-${receipt.discount.toFixed(2)}</span></div>
+            <div className="flex justify-between text-red-600"><span>Discount</span><span>-₹{receipt.discount.toFixed(2)}</span></div>
           )}
           <div className="flex justify-between font-bold text-lg border-t pt-2 mt-2">
-            <span>Total</span><span>${receipt.total.toFixed(2)}</span>
+            <span>Total</span><span>₹{receipt.total.toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-gray-500">
             <span>Payment ({receipt.method})</span>
-            <span>{receipt.method === 'cash' ? `$${(receipt.total + receipt.change).toFixed(2)}` : 'Paid'}</span>
+            <span>{receipt.method === 'cash' ? `₹₹{(receipt.total + receipt.change).toFixed(2)}` : 'Paid'}</span>
           </div>
           {receipt.method === 'cash' && (
             <div className="flex justify-between text-green-700 font-semibold">
-              <span>Change</span><span>${receipt.change.toFixed(2)}</span>
+              <span>Change</span><span>₹{receipt.change.toFixed(2)}</span>
             </div>
           )}
         </div>
@@ -223,15 +223,15 @@ export default function POSTerminal({
               key={p.id}
               onClick={() => addToCart(p)}
               disabled={p.stock === 0}
-              className={`bg-white rounded-xl p-3 text-left shadow-sm border transition hover:border-green-400 hover:shadow-md ${
+              className={`bg-white rounded-xl p-3 text-left shadow-sm border transition hover:border-green-400 hover:shadow-md ₹{
                 p.stock === 0 ? 'opacity-40 cursor-not-allowed' : ''
               }`}
             >
               <div className="text-xs text-gray-400 mb-1">{p.category}</div>
               <div className="font-semibold text-gray-800 text-sm leading-tight">{p.name}</div>
               <div className="mt-2 flex justify-between items-center">
-                <span className="text-green-700 font-bold">${p.price.toFixed(2)}</span>
-                <span className={`text-xs px-2 py-0.5 rounded-full ${p.stock < 5 ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-500'}`}>
+                <span className="text-green-700 font-bold">₹{p.price.toFixed(2)}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full ₹{p.stock < 5 ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-500'}`}>
                   {p.stock} {p.unit}
                 </span>
               </div>
@@ -274,7 +274,7 @@ export default function POSTerminal({
                       className="w-6 h-6 rounded-full bg-gray-100 hover:bg-gray-200 text-sm font-bold flex items-center justify-center"
                     >+</button>
                   </div>
-                  <span className="font-semibold text-green-700">${item.line_total.toFixed(2)}</span>
+                  <span className="font-semibold text-green-700">₹{item.line_total.toFixed(2)}</span>
                 </div>
               </div>
             ))
@@ -284,12 +284,12 @@ export default function POSTerminal({
         {/* Totals & Checkout */}
         <div className="border-t p-4 space-y-3">
           <div className="flex justify-between text-sm text-gray-600">
-            <span>Subtotal</span><span>${subtotal.toFixed(2)}</span>
+            <span>Subtotal</span><span>₹{subtotal.toFixed(2)}</span>
           </div>
           <div className="flex items-center gap-2">
             <label className="text-sm text-gray-600 w-20">Discount</label>
             <div className="relative flex-1">
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400">₹</span>
               <input
                 type="number"
                 min="0"
@@ -301,7 +301,7 @@ export default function POSTerminal({
             </div>
           </div>
           <div className="flex justify-between font-bold text-lg border-t pt-2">
-            <span>Total</span><span className="text-green-700">${total.toFixed(2)}</span>
+            <span>Total</span><span className="text-green-700">₹{total.toFixed(2)}</span>
           </div>
 
           <select
@@ -316,14 +316,14 @@ export default function POSTerminal({
 
           {paymentMethod === 'cash' && (
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">₹</span>
               <input
                 type="number"
                 min={total}
                 step="0.01"
                 value={amountTendered}
                 onChange={e => setAmountTendered(e.target.value)}
-                placeholder={`Min ${total.toFixed(2)}`}
+                placeholder={`Min ₹{total.toFixed(2)}`}
                 className="w-full border rounded-lg pl-7 pr-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
               />
             </div>
@@ -332,7 +332,7 @@ export default function POSTerminal({
           {paymentMethod === 'cash' && amountTendered && change >= 0 && (
             <div className="flex justify-between text-sm bg-green-50 rounded-lg p-2">
               <span className="text-green-700 font-medium">Change Due</span>
-              <span className="text-green-700 font-bold">${change.toFixed(2)}</span>
+              <span className="text-green-700 font-bold">₹{change.toFixed(2)}</span>
             </div>
           )}
 
