@@ -9,6 +9,7 @@ type Product = {
   barcode: string
   category: string
   price: number
+  cost_price: number
   stock: number
   unit: string
 }
