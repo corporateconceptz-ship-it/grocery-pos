@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase'
 const links = [
   { href: '/dashboard', label: '🏪 POS', },
   { href: '/products', label: '📦 Products' },
+  { href: '/inventory', label: '🏷️ Inventory' },
   { href: '/history', label: '📋 Sales History' },
 ]
 
