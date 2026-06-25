@@ -139,7 +139,7 @@ export default function ProductsPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Price ($) *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Price (₹) *</label>
                 <input required type="number" min="0" step="0.01" value={form.price}
                   onChange={e => setForm(f => ({ ...f, price: parseFloat(e.target.value) || 0 }))}
                   className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
@@ -186,8 +186,8 @@ export default function ProductsPage() {
                   <td className="px-4 py-3 font-medium text-gray-800">{p.name}</td>
                   <td className="px-4 py-3 text-gray-500">{p.category}</td>
                   <td className="px-4 py-3 text-gray-400 font-mono text-xs">{p.barcode || '—'}</td>
-                  <td className="px-4 py-3 font-semibold text-green-700">${p.price.toFixed(2)}</td>
-                  <td className={`px-4 py-3 font-medium ${p.stock < 5 ? 'text-red-600' : 'text-gray-700'}`}>{p.stock}</td>
+                  <td className="px-4 py-3 font-semibold text-green-700">₹{p.price.toFixed(2)}</td>
+                  <td className={`px-4 py-3 font-medium ₹{p.stock < 5 ? 'text-red-600' : 'text-gray-700'}`}>{p.stock}</td>
                   <td className="px-4 py-3 text-gray-500">{p.unit}</td>
                   <td className="px-4 py-3 flex gap-2">
                     <button onClick={() => startEdit(p)} className="text-blue-600 hover:text-blue-800 text-xs font-medium">Edit</button>
