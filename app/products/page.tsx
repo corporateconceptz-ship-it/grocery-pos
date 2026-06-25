@@ -187,8 +187,12 @@ export default function ProductsPage() {
                   <td className="px-4 py-3 font-medium text-gray-800">{p.name}</td>
                   <td className="px-4 py-3 text-gray-500">{p.category}</td>
                   <td className="px-4 py-3 text-gray-400 font-mono text-xs">{p.barcode || '—'}</td>
-                  <td className="px-4 py-3 font-semibold text-green-700">Price (₹){p.price.toFixed(2)}</td>
-                  <td className={`px-4 py-3 font-medium Price (₹){p.stock < 5 ? 'text-red-600' : 'text-gray-700'}`}>{p.stock}</td>
+                  <td className="px-4 py-3 font-semibold text-green-700">₹{p.price.toFixed(2)}</td>
+                  <td className="px-4 py-3 text-gray-500">₹{(p.cost_price || 0).toFixed(2)}</td>
+                  <td className="px-4 py-3 font-medium text-blue-600">
+                    {p.cost_price > 0 ? `${(((p.price - p.cost_price) / p.price) * 100).toFixed(1)}%` : '—'}
+                  </td>
+                  <td className={`px-4 py-3 font-medium ${p.stock < 5 ? 'text-red-600' : 'text-gray-700'}`}>{p.stock}</td>
                   <td className="px-4 py-3 text-gray-500">{p.unit}</td>
                   <td className="px-4 py-3 flex gap-2">
                     <button onClick={() => startEdit(p)} className="text-blue-600 hover:text-blue-800 text-xs font-medium">Edit</button>
