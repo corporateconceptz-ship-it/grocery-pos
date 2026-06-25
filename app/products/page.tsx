@@ -176,7 +176,7 @@ export default function ProductsPage() {
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b">
               <tr>
-                {['Name', 'Category', 'Barcode', 'Price', 'Stock', 'Unit', 'Actions'].map(h => (
+                {['Name', 'Category', 'Barcode', 'Price', 'Cost', 'Margin', 'Stock', 'Unit', 'Actions'].map(h => (
                   <th key={h} className="text-left px-4 py-3 font-semibold text-gray-600">{h}</th>
                 ))}
               </tr>
